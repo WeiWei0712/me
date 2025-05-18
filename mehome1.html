@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人介紹</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #0d0d0d;
+            color: #ffffff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1f1c2c, #928DAB);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        .header-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .header-button:hover {
+            background-color: #45a049;
+        }
+
+        .language-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .language-button:hover {
+            background-color: #45a049;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: #4CAF50;
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 10px;
+            height: 100%;
+            width: 2px;
+            background: #4CAF50;
+        }
+
+        .timeline-content {
+            background: #1f1c2c;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1f1c2c;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function switchLanguage(lang) {
+            const chineseContent = document.getElementById('chinese-content');
+            const englishContent = document.getElementById('english-content');
+            const chineseTimeline = document.getElementById('chinese-timeline');
+            const englishTimeline = document.getElementById('english-timeline');
+            const chineseHeader = document.getElementById('chinese-header');
+            const englishHeader = document.getElementById('english-header');
+            const chineseSkills = document.getElementById('chinese-skills');
+            const englishSkills = document.getElementById('english-skills');
+            const chinesewebs = document.getElementById('chinese-webs');
+            const englishwebs = document.getElementById('english-webs');
+            document.getElementById('btn-zh').classList.toggle('hidden', lang === 'zh');
+            document.getElementById('btn-en').classList.toggle('hidden', lang === 'en');
+
+
+            if (lang === 'en') {
+                chineseContent.classList.add('hidden');
+                englishContent.classList.remove('hidden');
+                chineseTimeline.classList.add('hidden');
+                englishTimeline.classList.remove('hidden');
+                chineseHeader.classList.add('hidden');
+                englishHeader.classList.remove('hidden');
+                chineseSkills.classList.add('hidden');
+                englishSkills.classList.remove('hidden');
+                chinesewebs.classList.add('hidden');
+                englishwebs.classList.remove('hidden');
+            } else {
+                chineseContent.classList.remove('hidden');
+                englishContent.classList.add('hidden');
+                chineseTimeline.classList.remove('hidden');
+                englishTimeline.classList.add('hidden');
+                chineseHeader.classList.remove('hidden');
+                englishHeader.classList.add('hidden');
+                chineseSkills.classList.remove('hidden');
+                englishSkills.classList.add('hidden');
+                chinesewebs.classList.remove('hidden');
+                englishwebs.classList.add('hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1 id="chinese-header">您好，我是孫凱威</h1>
+        <h1 id="english-header" class="hidden">Hello, I am Kevin (Kai-Wei) Sun </h1>
+        
+        <a href="#" id="btn-zh" class="language-button" onclick="switchLanguage('zh')">中文</a>
+        <a href="#" id="btn-en" class="language-button" onclick="switchLanguage('en')">English</a>
+
+    </header>
+
+    
+    <main>
+        <section id="chinese-content">
+            <h2>自傳</h2>
+            <p>我從小對遊戲與資訊科技充滿興趣。高中學測結束後，我主動參加了 Java 程式語言課程，這成為我探索程式設計的起點。在大學的資訊工程系，我扎實學習了程式設計基礎，並熟悉了 Python、C++、HTML、CSS，以及 Unity 3D 和 SketchUp 等工具。
+            隨著人工智慧的快速發展，我開始關注其潛在風險，並深入研究資訊安全相關議題。在碩士期間，我參與科技部的資安計畫，積極投入研究與實作。我希望能在 AI 與資安的交錯領域中，運用所學為社會貢獻力量，發揮專業能力。
+            </p>
+        </section>
+        
+        <section id="english-content" class="hidden">
+            <h2>Autobiography</h2>
+            <p>I have been interested in games and information technology since childhood. After finishing high school, I proactively participated in a Java programming course, which became the starting point for my exploration of programming. In university, I studied computer science, solidifying my understanding of programming fundamentals and familiarizing myself with Python, C++, HTML, CSS, as well as tools like Unity 3D and SketchUp.
+            With the rapid development of artificial intelligence, I began to pay attention to its potential risks and delved into information security issues. During my master's program, I participated in a cybersecurity project funded by the Ministry of Science and Technology, actively engaging in research and implementation. I hope to contribute my knowledge and expertise in the intersection of AI and cybersecurity to benefit society.</p>
+        </section>
+
+        <section id="chinese-timeline">
+            <h2>學經歷</h2>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2022年9月~2024年9月 - 在國立臺北教育大學資訊科學學系獲得碩士學位<畢業論文></h3>
+                    <ul>
+                        <li>深入分析實驗室論文，找出現有機制的改良空間。</li>
+                        <li>利用 SDN 技術特性，設計並提出創新優化機制。</li>
+                        <li>使用 ndnSIM 於虛擬機環境中完整模擬實驗流程，驗證改良方案的可行性。</li>
+                        <li>確認改良後機制能有效解決原有問題並提升性能。</li>    
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2023年9月~2024年9月 - 研究助理 科技部計畫執行人</h3>
+                    <ul>
+                        <li>利用 NFV 技術在邊緣節點進行資料封包聚合，有效降低上傳資料量與封包開銷，提升傳輸效率。</li>
+                        <li>採用差分隱私機制（拉普拉斯噪音）來保護感知資料中的使用者隱私，並考慮裝置移動性，引入八種方位偏移，增強隱私保護強度。</li>
+                        <li>完成模擬實驗，探討不同隱私預算與資料量下的誤差變化，驗證架構在隱私與準確率之間的平衡性。</li>
+                        <li>所提出架構能在保護隱私的同時，有效提升資料傳輸效率，具備實務應用潛力。</li>    
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2022年9月~2024年9月 - 在國立臺北教育大學資訊科學學系獲得碩士學位<在學期間></h3>
+                    <ul>
+                        <li>學習資訊安全、AI、演算法與網頁設計。</li>
+                        <li>熟練掌握 C++、Python、matlab等程式語言。</li>
+                        <li>CPE 檢定，證明自身程式設計能力。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2019年9月~2021年9月 - 在義守大學資訊工程學系獲得學士學位<在學期間></h3>
+                    <ul>
+                        <li>自學並熟悉教授上課所使用的電路板（如 Arduino、Raspberry Pi 等），提前準備課程教學。</li>
+                        <li>協助老師設計與準備自走車教材內容，研究其在 Linux 環境下的部署流程與操作方式。</li>
+                        <li>強化自身在嵌入式系統、Linux 操作與硬體控制相關知識，具備整合軟硬體的實務經驗。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="english-timeline" class="hidden">
+            <h2>Education and Experience</h2>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>September 2022 - September 2024 - Master's Degree in Computer Science at National Taipei University of Education</h3>
+                    <ul>
+                        <li>Conducted in-depth analysis of laboratory papers to identify areas for improvement in existing mechanisms.</li>
+                        <li>Designed and proposed innovative optimization mechanisms using SDN technology.</li>
+                        <li>Simulated experimental processes in a virtual environment using ndnSIM to validate the feasibility of the proposed improvements.</li>
+                        <li>Confirmed that the improved mechanisms effectively resolved existing issues and enhanced performance.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>September 2023 - September 2024 - Research Assistant for Ministry of Science and Technology Project</h3>
+                    <ul>
+                        <li>Utilized NFV technology for packet aggregation at edge nodes, effectively reducing upload data volume and packet overhead, enhancing transmission efficiency.</li>
+                        <li>Employed differential privacy mechanisms (Laplace noise) to protect user privacy in sensed data, considering device mobility and introducing eight directional offsets to strengthen privacy protection.</li>
+                        <li>Completed simulation experiments to explore error variations under different privacy budgets and data volumes, validating the architecture's balance between privacy and accuracy.</li>
+                        <li>The proposed architecture effectively enhances data transmission efficiency while protecting privacy, demonstrating practical application potential.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>September 2022 - September 2024 - Master's Degree in Computer Science at National Taipei University of Education</h3>
+                    <ul>
+                        <li>Studied information security, AI, algorithms, and web design.</li>
+                        <li>Proficient in programming languages such as C++, Python, and MATLAB.</li>
+                        <li>Obtained CPE certification, demonstrating programming capabilities.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>September 2019 - September 2021 - Bachelor's Degree in Computer Engineering at I-Shou University</h3>
+                    <ul>
+                        <li>Self-studied and became familiar with circuit boards used in classes (such as Arduino and Raspberry Pi) to prepare for course instruction.</li>
+                        <li>Assisted teachers in designing and preparing materials for autonomous vehicle courses, researching deployment processes and operating methods in Linux environments.</li>
+                        <li>Strengthened knowledge in embedded systems, Linux operations, and hardware control, gaining practical experience in integrating software and hardware.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="chinese-webs">
+            <h2>對網頁設計的熟悉</h2>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2020年2月~2020年6月 - HTML CSS</h3>
+                    <ul>
+                        <li>在這門課程中，我學習了 HTML 與 CSS，並於課程結束時製作了一個仿電影介紹網站作為期末成果。</li>
+                        <li>因為認為靜態網站功能有限，因此進一步自學了 JavaScript 以增加互動性。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2020年9月~2021年1月 - 修習資料庫的相關課程-MySQL</h3>
+                    <ul>
+                        <li>在自學過程中發現若要實現資料儲存等功能，需要資料庫技術，因此修習了相關課程。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2020年9月~2021年1月 - 修習Node.js</h3>
+                    <ul>
+                        <li>想試驗一些網頁功能從而自學了一些Node.js</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2021年9月- 熟悉Linux</h3>
+                    <ul>
+                        <li>根據統計，超過 70% 的網站伺服器都使用 Linux 作為作業系統</li>
+                        <li>在當老師的教學助理時有一整個學期都在摸索Linux系統 所以有一定的熟悉程度</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="english-webs" class="hidden">
+            <h2>Familiarity with Web Design</h2>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>February 2020 - June 2020 - HTML & CSS</h3>
+                    <ul>
+                        <li>During this course, I learned HTML and CSS, and developed a movie-themed mock website as the final project.</li>
+                        <li>Realizing that static websites are limited in functionality, I took the initiative to self-study JavaScript to add interactivity.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>September 2020 - January 2021 - Database Course - MySQL</h3>
+                    <ul>
+                        <li>I realized that implementing data storage in web development requires database knowledge, which motivated me to take a course in MySQL.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>September 2020 - January 2021 - Studied Node.js</h3>
+                    <ul>
+                        <li>I explored Node.js on my own to experiment with server-side functionalities and enhance my web development skills.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>September 2021 - Familiar with Linux</h3>
+                    <ul>
+                        <li>According to statistics, over 70% of web servers use Linux as their operating system.</li>
+                        <li>As a teaching assistant, I spent an entire semester working with the Linux operating system, gaining hands-on experience and a solid understanding of its environment.
+
+</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+
+        
+        <section id="chinese-skills">
+            <h2>技能</h2>
+            <ul>
+                <li>程式語言：C, C++, Python, MATLAB, Java</li>
+                <li>工具：Unity 3D, SketchUp, ndnSIM, Linux ,jupyter ,Pytorch</li>
+                <li>技術：資料安全、人工智慧、演算法、網頁設計</li>
+            </ul>
+        </section>
+
+        <section id="english-skills" class="hidden">
+            <h2>Skills</h2>
+            <ul>
+                <li>Programming Languages: C++, Python, MATLAB, Java</li>
+                <li>Tools: Unity 3D, SketchUp, ndnSIM, Linux, Jupyter, PyTorch</li>
+                <li>Technologies: Data Security, Artificial Intelligence, Algorithm Design, Web Design</li>
+            </ul>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; SKW - 所有權利保留</p>
+    </footer>
+</body>
+</html>
