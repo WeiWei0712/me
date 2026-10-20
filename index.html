@@ -304,6 +304,7 @@ svg.plinks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
       </div>
     </div>
     <div class="top-actions">
+      <button class="chip" id="characterBtn" type="button">🐹 切換吉伊卡哇版</button>
       <button class="chip" id="themeBtn" type="button">🌸 切換櫻花粉嫩</button>
       <button class="chip" id="liveBtn" type="button" aria-pressed="false">🕒 對照日本現在時間</button>
     </div>
@@ -770,6 +771,42 @@ $("themeBtn").onclick=()=>{
     toast("已切換為「🌸 櫻花粉嫩」亮色風格！");
   }
 };
+/* ---------- 新增：六張角色圖片一鍵切換（不更動原有功能） ---------- */
+// 只需把這六張吉伊卡哇圖片放在 index.html 同一層；要改檔名只改這裡。
+const CHIIKAWA_FILES=[
+  "chiikawa1.png", "chiikawa2.png", "chiikawa3.png",
+  "chiikawa4.png", "chiikawa5.png", "chiikawa6.png"
+];
+// 保留原本三麗鷗 SVG symbol；額外建立一組吉伊卡哇圖，兩組互不干擾。
+const originalPalIds=PALS.map(p=>p.id);
+const palDefs=document.querySelector("svg[aria-hidden='true'] defs");
+CHIIKAWA_FILES.forEach((file,i)=>{
+  const symbol=document.createElementNS(NS,"symbol");
+  symbol.setAttribute("id","chi"+i);
+  symbol.setAttribute("viewBox","0 0 146 146");
+  symbol.setAttribute("preserveAspectRatio","xMidYMid meet");
+  const image=document.createElementNS(NS,"image");
+  image.setAttribute("href","./"+file);
+  image.setAttribute("width","146");
+  image.setAttribute("height","146");
+  symbol.appendChild(image);
+  palDefs.appendChild(symbol);
+});
+let chiikawaMode=false;
+$("characterBtn").onclick=()=>{
+  chiikawaMode=!chiikawaMode;
+  const prefix=chiikawaMode?"chi":"pal";
+  // 更新之後新產生的角色圖（例如切換 Day 或總覽）。
+  PALS.forEach((p,i)=>{p.id=chiikawaMode?"chi"+i:originalPalIds[i]});
+  // 更新已出現的圖（標題、地圖、日期、總覽等），不重新整理頁面。
+  document.querySelectorAll("use").forEach(u=>{
+    const href=u.getAttribute("href")||"";
+    const match=href.match(/^#(?:pal|chi)([0-5])$/);
+    if(match)u.setAttribute("href","#"+prefix+match[1]);
+  });
+  $("characterBtn").textContent=chiikawaMode?"🎀 切換三麗鷗版":"🐹 切換吉伊卡哇版";
+};
+
 let toastT;function toast(t){const e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove("show"),3800)}
 
 /* ---------- 三麗鷗攻略地圖總覽 ---------- */
