@@ -267,7 +267,7 @@ svg.plinks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
     <symbol id="pal0" viewBox="15 44 115 58" preserveAspectRatio="xMidYMid meet">
       <image href="./bigear.png" width="146" height="147"/>
     </symbol>
-    <!-- pal1: Hello Kitty -->
+    <!-- pal1: Bonnie-->
     <symbol id="pal1" viewBox="29 23 89 99" preserveAspectRatio="xMidYMid meet">
       <image href="./kitty.png" width="146" height="146"/>
     </symbol>
@@ -275,7 +275,7 @@ svg.plinks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
     <symbol id="pal2" viewBox="33 27 80 93" preserveAspectRatio="xMidYMid meet">
       <image href="./Kuromi.png" width="146" height="146"/>
     </symbol>
-    <!-- pal3: 粉紅小羊 -->
+    <!-- pal3: 彼安諾 -->
     <symbol id="pal3" viewBox="37 27 71 91" preserveAspectRatio="xMidYMid meet">
       <image href="./sheep.png" width="146" height="146"/>
     </symbol>
@@ -362,7 +362,7 @@ svg.plinks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
 
 <script>
 const PALS=[
-  {id:"pal0",name:"大耳狗"},{id:"pal1",name:"Hello Kitty"},{id:"pal2",name:"酷洛米"},
+  {id:"pal0",name:"大耳狗"},{id:"pal1",name:"Bonnie"},{id:"pal2",name:"酷洛米"},
   {id:"pal3",name:"彼安諾"},{id:"pal4",name:"漢頓"},{id:"pal5",name:"酷企鵝"}
 ];
 
@@ -779,6 +779,9 @@ const CHIIKAWA_FILES=[
 ];
 // 保留原本三麗鷗 SVG symbol；額外建立一組吉伊卡哇圖，兩組互不干擾。
 const originalPalIds=PALS.map(p=>p.id);
+const originalPalNames=PALS.map(p=>p.name);
+// 吉伊卡哇六位角色名稱，依 chiikawa1.png ～ chiikawa6.png 的順序排列。
+const CHIIKAWA_NAMES=["吉伊卡哇","小八貓","烏薩奇","小桃","栗子饅頭","獅薩"];
 const palDefs=document.querySelector("svg[aria-hidden='true'] defs");
 CHIIKAWA_FILES.forEach((file,i)=>{
   const symbol=document.createElementNS(NS,"symbol");
@@ -797,12 +800,23 @@ $("characterBtn").onclick=()=>{
   chiikawaMode=!chiikawaMode;
   const prefix=chiikawaMode?"chi":"pal";
   // 更新之後新產生的角色圖（例如切換 Day 或總覽）。
-  PALS.forEach((p,i)=>{p.id=chiikawaMode?"chi"+i:originalPalIds[i]});
+  PALS.forEach((p,i)=>{
+    p.id=chiikawaMode?"chi"+i:originalPalIds[i];
+    p.name=chiikawaMode?CHIIKAWA_NAMES[i]:originalPalNames[i];
+  });
   // 更新已出現的圖（標題、地圖、日期、總覽等），不重新整理頁面。
   document.querySelectorAll("use").forEach(u=>{
     const href=u.getAttribute("href")||"";
     const match=href.match(/^#(?:pal|chi)([0-5])$/);
     if(match)u.setAttribute("href","#"+prefix+match[1]);
+  });
+  // 同步修改「今日同行夥伴」下方的角色名稱，不重建行程或影響動畫。
+  document.querySelectorAll("#pals .pal-chip").forEach(chip=>{
+    const href=chip.querySelector("use")?.getAttribute("href")||"";
+    const match=href.match(/^#(?:pal|chi)([0-5])$/);
+    if(match && chip.lastChild?.nodeType===Node.TEXT_NODE){
+      chip.lastChild.textContent=PALS[Number(match[1])].name;
+    }
   });
   $("characterBtn").textContent=chiikawaMode?"🎀 切換三麗鷗版":"🐹 切換吉伊卡哇版";
 };
